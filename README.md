@@ -1,4 +1,4 @@
-# SignLanguage-Classification
+# 🤟 Sign Language Alphabet Classification using CNN
 
 A lightweight, single-file Python project that classifies American Sign Language (ASL) alphabets (A–Z, excluding 'J' and 'Z') using a Convolutional Neural Network (CNN). Built with TensorFlow/Keras and trained on the Sign Language MNIST dataset.
 
@@ -8,6 +8,7 @@ A lightweight, single-file Python project that classifies American Sign Language
 
 A Convolutional Neural Network (CNN) built from scratch with the following layers:
 
+```
 Input: 28x28 grayscale image
 
 → Conv2D (ReLU)  
@@ -20,10 +21,12 @@ Input: 28x28 grayscale image
 → Dense (Softmax)
 
 Output: 24-class classification (A–Z, skipping 'J' and 'Z')
+```
 
 ---
 
 ## 📦 Libraries Used
+
 ```python
 import numpy as np  
 import pandas as pd  
@@ -36,67 +39,77 @@ from sklearn.metrics import classification_report, confusion_matrix
 import tensorflow as tf  
 from tensorflow.keras.models import Sequential  
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
-````markdown
+```
+
 Install them using:
+
+```bash
 pip install numpy pandas matplotlib seaborn scikit-learn tensorflow
+```
 
+---
 
-##📊 Dataset
-Source: https://www.kaggle.com/datamunge/sign-language-mnist
+## 📊 Dataset
 
-Files:
+- **Source:** https://www.kaggle.com/datamunge/sign-language-mnist  
+- **Files:**
+  - `sign_mnist_train.csv`
+  - `sign_mnist_test.csv`
+- **Image Format:** 28×28 grayscale (flattened into 784 columns)  
+- **Labels:** Integers from 0 to 25 (excluding label 9 for ‘J’)
 
-sign_mnist_train.csv
+---
 
-sign_mnist_test.csv
+## 🚀 How to Run
 
-Image Format: 28×28 grayscale (flattened into 784 columns)
+1. Download the dataset and place the CSVs in your project folder.  
+2. Run the script:
 
-Labels: Integers from 0 to 25 (excluding label 9 for ‘J’)
-
-🚀 How to Run
-Download the dataset and place the CSVs in your project folder.
-
-Run the script:
+```bash
 python Sign Language Classification.ipynb
+```
 
-✅ Output Example
+
+
+---
+
+## ✅ Output Example
+
 Sample predictions from the test set:
 
-Predicted: C - Actual: C
-Predicted: L - Actual: L
-Predicted: V - Actual: V
-Predicted: H - Actual: H
-Predicted: A - Actual: A
+```
+Predicted: C - Actual: C  
+Predicted: L - Actual: L  
+Predicted: V - Actual: V  
+Predicted: H - Actual: H  
+Predicted: A - Actual: A  
+```
 
 The script also prints:
 
-📉 Classification report (precision, recall, F1-score)
+- 📉 **Classification report** (precision, recall, F1-score)  
+- 🔍 **Confusion matrix** as a heatmap (via Seaborn)
 
-🔍 Confusion matrix as a heatmap (via Seaborn)
+---
 
-⚠️ Limitations
-❌ Does not support dynamic signs like ‘J’ or ‘Z’, which require motion.
+## ⚠️ Limitations
 
-📏 Only works on 28×28 grayscale images — not adaptable to higher-res or color inputs.
+- ❌ Does **not support dynamic signs** like **‘J’** or **‘Z’**, which require motion.  
+- 📏 Only works on **28×28 grayscale images** — not adaptable to higher-res or color inputs.  
+- 🌥️ **Sensitive to lighting and background noise** — limited generalization.  
+- 🧪 **Trained on static images only**, not on real-world hand gestures.  
+- 🎥 No **real-time webcam or video input** implemented (yet).
 
-🌥️ Sensitive to lighting and background noise — limited generalization.
+---
 
-🧪 Trained on static images only, not on real-world hand gestures.
+## 🚀 Future Work & Improvements
 
-🎥 No real-time webcam or video input implemented (yet).
+- 📸 Integrate **real-time webcam input** using **OpenCV** or **MediaPipe**.  
+- 👐 Support **dynamic signs** using **LSTM**, **3D CNNs**, or **pose estimation**.  
+- 🌍 Expand dataset to include **diverse skin tones, hand shapes, and lighting conditions**.  
+- 💾 Add **model checkpointing**, export to `.h5`, and build a **reusable inference pipeline**.  
+- 📱 Convert into a **web app (TensorFlow.js)** or **mobile app (TensorFlow Lite)** for accessibility.
 
-
-🚀 Future Work & Improvements
-📸 Integrate real-time webcam input using OpenCV or MediaPipe.
-
-👐 Support dynamic signs using LSTM, 3D CNNs, or pose estimation.
-
-🌍 Expand dataset to include diverse skin tones, hand shapes, and lighting conditions.
-
-💾 Add model checkpointing, export to .h5, and build a reusable inference pipeline.
-
-📱 Convert into a web app (TensorFlow.js) or mobile app (TensorFlow Lite) for accessibility.
-
+---
 
 
