@@ -24,7 +24,7 @@ Output: 24-class classification (A–Z, skipping 'J' and 'Z')
 ---
 
 ## 📦 Libraries Used
-
+```python
 import numpy as np  
 import pandas as pd  
 import matplotlib.pyplot as plt  
@@ -36,11 +36,12 @@ from sklearn.metrics import classification_report, confusion_matrix
 import tensorflow as tf  
 from tensorflow.keras.models import Sequential  
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
-
+````markdown
 Install them using:
 pip install numpy pandas matplotlib seaborn scikit-learn tensorflow
 
-📊 Dataset
+
+##📊 Dataset
 Source: https://www.kaggle.com/datamunge/sign-language-mnist
 
 Files:
@@ -84,6 +85,7 @@ The script also prints:
 🧪 Trained on static images only, not on real-world hand gestures.
 
 🎥 No real-time webcam or video input implemented (yet).
+
 
 🚀 Future Work & Improvements
 📸 Integrate real-time webcam input using OpenCV or MediaPipe.
