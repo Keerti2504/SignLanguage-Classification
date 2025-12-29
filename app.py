@@ -1,35 +1,31 @@
-from flask import Flask, request, jsonify
-import numpy as np
+import streamlit as st
 import tensorflow as tf
+import numpy as np
 from PIL import Image
-import io
 
-app = Flask(__name__)
-model = tf.keras.models.load_model("sign_language_cnn.h5")
+# Load model once
+@st.cache_resource
+def load_model():
+    return tf.keras.models.load_model("model.h5")
 
-def num_to_char(num):
-    return chr(num + 65) if num < 9 else chr(num + 66)
+model = load_model()
 
-@app.route("/predict", methods=["POST"])
-def predict():
-    if "file" not in request.files:
-        return jsonify({"error": "No file uploaded"})
+# Label mapping (A–Z without J)
+labels = [chr(i + 65) if i < 9 else chr(i + 66) for i in range(25)]
 
-    file = request.files["file"]
-    image = Image.open(io.BytesIO(file.read())).convert("L")
-    image = image.resize((28, 28))
+st.title("Sign Language Classification")
+st.write("Upload a hand sign image (28x28 grayscale)")
 
-    img = np.array(image) / 255.0
-    img = img.reshape(1, 28, 28, 1)
+uploaded_file = st.file_uploader("Choose an image", type=["png", "jpg", "jpeg"])
 
-    pred = model.predict(img)
-    cls = int(np.argmax(pred))
-    conf = float(np.max(pred))
+if uploaded_file is not None:
+    img = Image.open(uploaded_file).convert("L")
+    img = img.resize((28, 28))
+    img_array = np.array(img) / 255.0
+    img_array = img_array.reshape(1, 28, 28, 1)
 
-    return jsonify({
-        "prediction": num_to_char(cls),
-        "confidence": conf
-    })
+    prediction = model.predict(img_array)
+    predicted_class = labels[np.argmax(prediction)]
 
-if __name__ == "__main__":
-    app.run(debug=True)
+    st.image(img, caption="Uploaded Image", width=200)
+    st.success(f"Predicted Sign: {predicted_class}")
