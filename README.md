@@ -112,4 +112,5 @@ The script also prints:
 
 ---
 
+<img width="108" height="105" alt="image" src="https://github.com/user-attachments/assets/77ae5ea8-e236-4924-bd6f-0bd1da812a96" />
 
