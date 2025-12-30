@@ -6,7 +6,7 @@ from PIL import Image
 # Load model once
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model("model.h5")
+    return tf.keras.models.load_model("sign_language_cnn.h5")
 
 model = load_model()
 
